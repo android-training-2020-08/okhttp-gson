@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-
+import com.google.gson.Gson;
 import java.io.IOException;
 
 import io.reactivex.Observable;
@@ -51,7 +51,10 @@ public class NetworkActivity extends AppCompatActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(json -> {
-                            Toast.makeText(getApplicationContext(), String.valueOf(json), Toast.LENGTH_LONG).show();
+                            Gson gson = new Gson();
+                            Wrapper wrapper = gson.fromJson((String)json, Wrapper.class);
+                            String firstName =  wrapper.getData().get(0).getName();
+                            Toast.makeText(getApplicationContext(), firstName, Toast.LENGTH_LONG).show();
                         },
                         error -> {
                             Toast.makeText(getApplicationContext(), "Failed to get josn data", Toast.LENGTH_LONG).show();

@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">okhttp-network-request</string>
+    <string name="goto_network_activty">goto network activty</string>
+    <string name="get_json_data">get json data</string>
+</resources>
